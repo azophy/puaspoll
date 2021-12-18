@@ -3,7 +3,7 @@
     <h2>{{ $item->title }}</h2>
     <p>{{ $item->description }}</p>
 
-    <x-poll.form :item="$item"/>
+    <x-poll.input_form :item="$item"/>
 
 </x-layouts.base>
 
