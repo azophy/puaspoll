@@ -32,6 +32,14 @@ class Poll extends Model
         'expire_time' => 'datetime',
     ];
 
+    static function findBySlugOrFail($slug)
+    {
+        $poll = Poll::where(compact('slug'))->first();
+        if (empty($poll)) abort(404, 'Poll not found');
+
+        return $poll;
+    }
+
     /**
      * Get choice in sorted condition
      *

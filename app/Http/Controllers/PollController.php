@@ -51,8 +51,7 @@ class PollController extends Controller
      */
     public function show($slug)
     {
-        $poll = Poll::where(compact('slug'))->first();
-        if (empty($poll)) abort(404, 'Poll not found');
+        $poll = Poll::findBySlugOrFail($slug);
 
         return view('poll.input', [
             'item' => $poll,
@@ -67,8 +66,7 @@ class PollController extends Controller
      */
     public function result($slug)
     {
-        $poll = Poll::where(compact('slug'))->first();
-        if (empty($poll)) abort(404, 'Poll not found');
+        $poll = Poll::findBySlugOrFail($slug);
 
         return view('poll.result', compact('poll'));
     }
@@ -93,8 +91,7 @@ class PollController extends Controller
      */
     public function input($slug, Request $request)
     {
-        $poll = Poll::where(compact('slug'))->first();
-        if (empty($poll)) abort(404, 'Poll not found');
+        $poll = Poll::findBySlugOrFail($slug);
 
         $tempChoice = $poll->choice;
         foreach ($request->input('poll-choice') as $index => $val) {
