@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePollRequest;
-use App\Http\Requests\UpdatePollRequest;
+use Illuminate\Http\Request;
 
 use App\Models\Poll;
+use App\Http\Requests\StorePollRequest;
+use App\Http\Requests\UpdatePollRequest;
 
 class PollController extends Controller
 {
@@ -45,24 +46,16 @@ class PollController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Poll  $poll
+     * @param  string   $slug
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
-        return Poll::where(compact('slug'))->first()->toJson();
-    }
+        $poll = Poll::where(compact('slug'))->first();
+        if (empty($poll)) abort(404, 'Poll not found');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  string   $slug
-     * @return \Illuminate\Http\Response
-     */
-    public function input($slug)
-    {
         return view('poll.input', [
-            'item' => Poll::where(compact('slug'))->first(),
+            'item' => $poll,
         ]);
     }
 
@@ -75,6 +68,32 @@ class PollController extends Controller
     public function edit(Poll $poll)
     {
         //
+    }
+
+    /**
+     * Accept Post Submission
+     *
+     * @param  string   $slug
+     * @param  \App\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function input($slug, Request $request)
+    {
+        $poll = Poll::where(compact('slug'))->first();
+        if (empty($poll)) abort(404, 'Poll not found');
+
+        $tempChoice = $poll->choice;
+        foreach ($request->input('poll-choice') as $index => $val) {
+            $tempChoice[$index]['score'] += $val;
+            $tempChoice[$index]['num_voter'] += empty($val) ? 0 : 1;
+        }
+
+        $poll->update(['choice' => $tempChoice]);
+
+        return [
+            'success' => true,
+            'poll_data' => $poll->toArray(),
+        ];
     }
 
     /**

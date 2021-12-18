@@ -1,4 +1,8 @@
-@props(['pollname' => 'default','item'])
+@props([
+    'pollname' => 'poll',
+    'form_action' => '#',
+    'item',
+])
 
 @php
 $choices = $item->choice ?? [
@@ -9,25 +13,26 @@ $choices = $item->choice ?? [
 ];
 @endphp
 
-<form>
-      <div style="background:#ddd; padding:1em">
-          <label for="budget">Your Voting Budget (<span id="{{$pollname}}-budget-indicator"></span> point)
-            <progress id="{{$pollname}}-budget" value="100" max="100"></progress>
-          </label>
+<form method="post" action="{{$form_action}}">
+    @csrf
+    <div style="background:#ddd; padding:1em">
+        <label for="budget">Your Voting Budget (<span id="{{$pollname}}-budget-indicator"></span> point)
+          <progress id="{{$pollname}}-budget" value="100" max="100"></progress>
+        </label>
 
-          <em>How to use: you could spend your "voting budget" for each choices below. However beware that the cost for each vote increase by the power of 2, so spend it wisely!</em>
+        <em>How to use: you could spend your "voting budget" for each choices below. However beware that the cost for each vote increase by the power of 2, so spend it wisely!</em>
 
-          <div id="{{$pollname}}-notif"></div>
-      </div>
+        <div id="{{$pollname}}-notif"></div>
+    </div>
 
 
-      @foreach ($choices as $choice)
-      <label for="choice-{{$loop->index}}">{{$choice[0]}} (<span id="{{$pollname}}-choice-indicator-{{$loop->index}}"></span> vote)
-        <input type="range" min="0" max="10" value="0" id="{{$pollname}}-choice-{{$loop->index}}" name="{$pollname}}-choice-{{$loop->index}}" class="{{$pollname}}-item" oninput="updateBudget('{{$pollname}}', {{$loop->index}})">
-      </label>
-      @endforeach
+    @foreach ($choices as $choice)
+    <label for="choice-{{$loop->index}}">{{$choice['title']}} (<span id="{{$pollname}}-choice-indicator-{{$loop->index}}"></span> vote)
+      <input type="range" min="0" max="10" value="0" id="{{$pollname}}-choice-{{$loop->index}}" name="{{$pollname}}-choice[{{$loop->index}}]" class="{{$pollname}}-item" oninput="updateBudget('{{$pollname}}', {{$loop->index}})">
+    </label>
+    @endforeach
 
-      <button id="{{$pollname}}-submit" type="submit">Submit</button>
+    <button id="{{$pollname}}-submit" type="submit">Submit</button>
 </form>
 
 <script>

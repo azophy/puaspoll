@@ -16,7 +16,11 @@ class PollFactory extends Factory
         $choice = [];
 
         foreach (range(1, $this->faker->randomDigitNotNull()) as $num) {
-            $choice[] = [ $this->faker->text(10), $this->faker->randomDigitNotNull() ];
+            $choice[] = [
+                'title' => $this->faker->text(10),
+                'score' => $this->faker->randomDigitNotNull(),
+                'num_voter' => $this->faker->randomDigitNotNull(),
+            ];
         }
 
         return [
