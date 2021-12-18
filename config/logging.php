@@ -21,19 +21,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Deprecations Log Channel
-    |--------------------------------------------------------------------------
-    |
-    | This option controls the log channel that should be used to log warnings
-    | regarding deprecated PHP and library features. This allows you to get
-    | your application ready for upcoming major versions of dependencies.
-    |
-    */
-
-    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Log Channels
     |--------------------------------------------------------------------------
     |
@@ -48,15 +35,15 @@ return [
     */
 
     'channels' => [
+        // change error driver to allow heroku logging
+        // ref: https://devcenter.heroku.com/articles/getting-started-with-laravel#changing-the-log-destination-for-production
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
-            'ignore_exceptions' => false,
         ],
 
         'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'driver' => 'errorlog',
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
