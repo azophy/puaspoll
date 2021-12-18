@@ -11,6 +11,8 @@
 
     <!-- Pico.css (Classless version) -->
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
+
+    <script defer data-domain="puaspoll.com" src="https://plausible.io/js/plausible.js"></script>
   </head>
 
   <body>
