@@ -1,4 +1,14 @@
-@props(['pollname' => 'default'])
+@props(['item'])
+
+@php
+$pollname = $item->slug ?? 'default';
+$choices = $item->choice ?? [
+    ['Mountain', 0],
+    ['Beach', 0],
+    ['Farm', 0],
+    ['Museum' 0],
+];
+@endphp
 
 <form>
       <div style="background:#ddd; padding:0 1em">
@@ -9,8 +19,8 @@
           <div id="{{$pollname}}-notif"></div>
       </div>
 
-      @foreach (['Mountain', 'Beach', 'Farm', 'Museum'] as $item)
-      <label for="choice-{{$loop->index}}">{{$item}}
+      @foreach ($choices as $choice)
+      <label for="choice-{{$loop->index}}">{{$choice}}
         <input type="range" min="0" max="10" value="0" id="choice-{{$loop->index}}" name="choice-{{$loop->index}}" class="{{$pollname}}-item" oninput="updateBudget('{{$pollname}}')">
       </label>
       @endforeach

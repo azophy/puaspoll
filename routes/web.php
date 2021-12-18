@@ -17,3 +17,8 @@ Route::get('/', function () {
     //return view('welcome');
     return view('home');
 });
+
+use App\Http\Controllers\PollController;
+//Route::resource('-', PollController::class);
+Route::get('/-', [PollController::class, 'index'])->name('poll.index');
+Route::get('/-/{slug}', [PollController::class, 'input'])->name('poll.input');
