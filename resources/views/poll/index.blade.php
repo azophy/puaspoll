@@ -16,7 +16,8 @@
         <td>{{ $item->title }}</td>
         <td>{{ $item->slug }}</td>
         <td>
-            <a href="{{ route('poll.show', ['slug' => $item->slug ]) }}">Fill the Poll</a>
+            <a href="{{ route('poll.show', ['slug' => $item->slug ]) }}">Fill the Poll</a> |
+            <a href="{{ route('poll.result', ['slug' => $item->slug ]) }}">View Result</a>
         </td>
       </tr>
     @endforeach

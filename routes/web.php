@@ -23,3 +23,4 @@ use App\Http\Controllers\PollController;
 Route::get('/-', [PollController::class, 'index'])->name('poll.index');
 Route::get('/-/{slug}', [PollController::class, 'show'])->name('poll.show');
 Route::post('/-/{slug}', [PollController::class, 'input'])->name('poll.input');
+Route::get('/-/{slug}/result', [PollController::class, 'result'])->name('poll.result');

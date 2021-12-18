@@ -60,6 +60,20 @@ class PollController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  string   $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function result($slug)
+    {
+        $poll = Poll::where(compact('slug'))->first();
+        if (empty($poll)) abort(404, 'Poll not found');
+
+        return view('poll.result', compact('poll'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Poll  $poll
@@ -88,12 +102,11 @@ class PollController extends Controller
             $tempChoice[$index]['num_voter'] += empty($val) ? 0 : 1;
         }
 
-        $poll->update(['choice' => $tempChoice]);
+        if ($poll->update(['choice' => $tempChoice])) {
+            $request->session()->flash('status', "Submission received !");
+        }
 
-        return [
-            'success' => true,
-            'poll_data' => $poll->toArray(),
-        ];
+        return redirect()->route('poll.result', compact('slug'));
     }
 
     /**
