@@ -14,7 +14,7 @@ l giving preference for any of them</p>
   <p>Sed ultricies dolor non ante vulputate hendrerit. Vivamus sit am
 ipit sapien. Nulla iaculis eros a elit pharetra egestas.</p>
 
-  <x-poll.form/>
+  <x-poll.input_form/>
 
 </section><!-- ./ example -->
 

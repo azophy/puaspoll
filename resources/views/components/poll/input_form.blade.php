@@ -6,10 +6,10 @@
 
 @php
 $choices = $item->choice ?? [
-    ['Mountain', 0],
-    ['Beach', 0],
-    ['Farm', 0],
-    ['Museum', 0],
+    ['title' => 'Mountain'],
+    ['title' => 'Beach'],
+    ['title' => 'Farm'],
+    ['title' => 'Museum'],
 ];
 @endphp
 
