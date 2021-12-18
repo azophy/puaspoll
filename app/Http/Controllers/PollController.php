@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Models\Poll;
@@ -29,7 +30,7 @@ class PollController extends Controller
      */
     public function create()
     {
-        //
+        return view('poll.create');
     }
 
     /**
@@ -40,7 +41,23 @@ class PollController extends Controller
      */
     public function store(StorePollRequest $request)
     {
-        //
+        $inputData = $request->validated();
+        $inputData['choice'] = [];
+        $inputData['expire_time'] = Carbon::now()->addHours(24 * 7);
+
+        foreach ($inputData['choice_title'] as $title) {
+            $inputData['choice'][] = [
+                'title' => $title,
+                'score' => 0,
+                'num_voter' => 0,
+            ];
+        }
+
+        if ($poll = Poll::create($inputData)) {
+            return redirect()->route('polls.show', [
+                'slug' => $poll->slug,
+            ])->with('status', 'Poll successfully created');
+        }
     }
 
     /**
@@ -103,7 +120,7 @@ class PollController extends Controller
             $request->session()->flash('status', "Submission received !");
         }
 
-        return redirect()->route('poll.result', compact('slug'));
+        return redirect()->route('polls.result', compact('slug'));
     }
 
     /**

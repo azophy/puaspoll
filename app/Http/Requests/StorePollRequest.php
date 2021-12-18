@@ -13,7 +13,7 @@ class StorePollRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StorePollRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:polls|max:255',
+            'description' => 'nullable|string',
+            'choice_title' => 'required|array',
         ];
     }
 }

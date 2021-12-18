@@ -5,7 +5,6 @@
   <h2>Why PuasPoll</h2>
   <p>No Tyranny of Majority, you could choose more then 1 choice, whi
 l giving preference for any of them</p>
-
 </section><!-- ./ why -->
 
 <!-- example-->
@@ -15,8 +14,13 @@ l giving preference for any of them</p>
 ipit sapien. Nulla iaculis eros a elit pharetra egestas.</p>
 
   <x-poll.input_form/>
-
 </section><!-- ./ example -->
+
+<!-- cta-->
+<section id="cta">
+  <h2>Create you own poll now!</h2>
+  <a href="{{route('polls.create')}}">Create For Free</a>
+</section><!-- ./ cta -->
 
 </x-layouts.base>
 

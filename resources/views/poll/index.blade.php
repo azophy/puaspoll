@@ -1,5 +1,7 @@
 <x-layouts.base>
 
+<a href="{{route('polls.create')}}">Create New Poll</a>
+
 <table role="grid">
     <thead>
       <tr>
@@ -16,8 +18,8 @@
         <td>{{ $item->title }}</td>
         <td>{{ $item->slug }}</td>
         <td>
-            <a href="{{ route('poll.show', ['slug' => $item->slug ]) }}">Fill the Poll</a> |
-            <a href="{{ route('poll.result', ['slug' => $item->slug ]) }}">View Result</a>
+            <a href="{{ route('polls.show', ['slug' => $item->slug ]) }}">Fill the Poll</a> |
+            <a href="{{ route('polls.result', ['slug' => $item->slug ]) }}">View Result</a>
         </td>
       </tr>
     @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,7 +35,12 @@ class Poll extends Model
 
     static function findBySlugOrFail($slug)
     {
-        $poll = Poll::where(compact('slug'))->first();
+        $poll = Poll::where(compact('slug'))
+            ->where(function($query) {
+                $query->whereNull('expire_time')
+                      ->orWhereRaw('expire_time > now()');
+            })
+            ->first();
         if (empty($poll)) abort(404, 'Poll not found');
 
         return $poll;
