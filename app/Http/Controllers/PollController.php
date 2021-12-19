@@ -112,12 +112,6 @@ class PollController extends Controller
 
          $validated = $request->validate([
             'g-recaptcha-response' => 'recaptcha',
-            // poll-choice could not be empty
-            function ($attribute, $value, $fail) {
-                if (count($value) <= 0) {
-                    $fail('There should at least 1 choice exists.');
-                }
-            },
             // sum of poll-choice score must be between 0 and VOTE_BUDGET
             function ($attribute, $value, $fail) {
                 $sumScore = 0;
@@ -142,7 +136,7 @@ class PollController extends Controller
             $request->session()->flash('status', "Submission received !");
         }
 
-        return redirect()->route('polls.result', compact('slug'));
+        return redirect()->route('polls.show', compact('slug'));
     }
 
     /**

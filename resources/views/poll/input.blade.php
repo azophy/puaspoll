@@ -16,7 +16,17 @@
         </p>
     @endif
 
-    <x-poll.input_form :item="$item" form_action="{{route('polls.input', ['slug' => $item->slug])}}"/>
+    <article>
+        <h3>Input your vote</h3>
+
+        <x-poll.input_form :item="$item" form_action="{{route('polls.input', ['slug' => $item->slug])}}"/>
+    </article>
+
+    <article>
+        <h3>Latest Result</h3>
+
+        <x-poll.result_chart :poll="$item"/>
+    </article>
 
 </x-layouts.base>
 
