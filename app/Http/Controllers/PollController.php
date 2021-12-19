@@ -110,20 +110,26 @@ class PollController extends Controller
     {
         $poll = Poll::findBySlugOrFail($slug);
 
-         $validated = $request->validate([
+        if (session("submission_received_$slug")) {
+            abort('401', 'You has submitted your vote for this poll');
+        }
+
+        $validated = $request->validate([
             'g-recaptcha-response' => 'recaptcha',
-            // sum of poll-choice score must be between 0 and VOTE_BUDGET
-            function ($attribute, $value, $fail) {
-                $sumScore = 0;
+            'poll-choice' => [
+                // sum of poll-choice score must be between 0 and VOTE_BUDGET
+                function ($attribute, $value, $fail) {
+                    $sumScore = 0;
 
-                foreach ($value as $key => $val) {
-                    $sumScore += $val;
-                }
+                    foreach ($value as $key => $val) {
+                        $sumScore += $val;
+                    }
 
-                if ($sumScore < 0 || $sumScore > Poll::VOTE_BUDGET) {
-                    $fail('Sum of all vote must be between 0 and ' . Poll::VOTE_BUDGET);
-                }
-            },
+                    if ($sumScore < 0 || $sumScore > Poll::VOTE_BUDGET) {
+                        $fail('Sum of all vote must be between 0 and ' . Poll::VOTE_BUDGET);
+                    }
+                },
+            ],
         ]);
 
         $tempChoice = $poll->choice;
@@ -135,6 +141,8 @@ class PollController extends Controller
         if ($poll->update(['choice' => $tempChoice])) {
             $request->session()->flash('status', "Submission received !");
         }
+
+        session(["submission_received_$slug" => true]);
 
         return redirect()->route('polls.show', compact('slug'));
     }

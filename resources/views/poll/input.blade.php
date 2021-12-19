@@ -19,7 +19,11 @@
     <article>
         <h3>Input your vote</h3>
 
-        <x-poll.input_form :item="$item" form_action="{{route('polls.input', ['slug' => $item->slug])}}"/>
+        @if (session("submission_received_{$item->slug}"))
+            <mark>You has submitted your vote for this poll</mark>
+        @else
+            <x-poll.input_form :item="$item" form_action="{{route('polls.input', ['slug' => $item->slug])}}"/>
+        @endif
     </article>
 
     <article>
