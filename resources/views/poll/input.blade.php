@@ -6,8 +6,9 @@
         </mark>
     @endif
 
-    <h2>{{ $item->title }}</h2>
+    <h2>{{ $item->title }}</h2><div class="sharethis-inline-share-buttons"></div>
     <p>{{ $item->description }}</p>
+
     @if (!empty($item->expire_time))
         <p>
             <mark>

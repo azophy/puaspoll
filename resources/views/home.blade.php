@@ -41,6 +41,7 @@
 <section id="cta">
   <h2>Create you own poll for free!</h2>
   <a href="{{route('polls.create')}}" role="button">Create Now</a>
+  <a href="{{route('polls.index')}}" role="button">Explore Public Polls</a>
 </section><!-- ./ cta -->
 
 </x-layouts.base>
