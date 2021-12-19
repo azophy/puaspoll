@@ -6,7 +6,7 @@
         </mark>
     @endif
 
-    <h2>{{ $item->title }}</h2><div class="sharethis-inline-share-buttons"></div>
+    <h2>{{ $item->title }}</h2>
     <p>{{ $item->description }}</p>
 
     @if (!empty($item->expire_time))
@@ -16,6 +16,8 @@
             </mark>
         </p>
     @endif
+
+    <div class="sharethis-inline-share-buttons"></div>
 
     <article>
         <h3>Input your vote</h3>
