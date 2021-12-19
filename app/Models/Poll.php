@@ -23,6 +23,8 @@ class Poll extends Model
         'description',
         'choice',
         'expire_time',
+        'num_voter',
+        'is_public',
     ];
 
     /**

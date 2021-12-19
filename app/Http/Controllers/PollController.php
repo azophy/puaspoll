@@ -19,7 +19,10 @@ class PollController extends Controller
     public function index()
     {
         return view('poll.index', [
-            'items' => Poll::orderBy('id', 'desc')->limit(10)->get(),
+            'items' => Poll::where('is_public', true)
+                ->orderBy('id', 'desc')
+                ->limit(10)
+                ->get(),
         ]);
     }
 
@@ -44,6 +47,7 @@ class PollController extends Controller
         $inputData = $request->validated();
         $inputData['choice'] = [];
         $inputData['expire_time'] = Carbon::now()->addHours(24 * 7);
+        $inputData['is_public'] = $request->input('is_public', 'off') == 'on';
 
         foreach ($inputData['choice_title'] as $title) {
             $inputData['choice'][] = [
@@ -138,7 +142,10 @@ class PollController extends Controller
             $tempChoice[$index]['num_voter'] += empty($val) ? 0 : 1;
         }
 
-        if ($poll->update(['choice' => $tempChoice])) {
+        $poll->choice = $tempChoice;
+        $poll->num_voter++;
+
+        if ($poll->save()) {
             $request->session()->flash('status', "Submission received !");
         }
 

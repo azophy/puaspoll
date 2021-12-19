@@ -22,11 +22,15 @@
     <!-- Header -->
     <header>
       <hgroup>
-        <a href="{{ url('/') }}">
-            <h1>PuasPoll</h1>
-        </a>
+        <h1><a href="{{url('/')}}">PuasPoll</a></h1>
         <h2>The most satisfiying polling app you'll ever tried</h2>
       </hgroup>
+      <nav>
+        <ul>
+          <li><a href="{{route('polls.index')}}">Public Polls Directory</a></li>
+          <li><a href="{{route('polls.create')}}">Create new Poll</a></li>
+        </ul>
+      </nav>
     </header><!-- ./ Header -->
 
     <!-- Main -->

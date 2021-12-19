@@ -30,11 +30,17 @@
     <label for="title">Url</label>
     {{url('/-')}}/<input type="text" name="slug" value="" placeholder="url-to-your-new-poll" value="{{ old('slug') }}">
 
+    <label for="is_public">
+      <input type="checkbox" id="is_public" name="is_public" role="switch" checked>
+      Make this Poll public
+    </label>
+    <small>By default, only people with the link to this poll could open it. By making it public, it would be featured in PuasPoll's <a href="{{ route('polls.index') }}" target="_blank">Public Poll list</a></small>
+
     <h3>Choices</h3>
     <ul id="choices">
     </ul>
 
-    <button type="button" style="width:200px;background:#444" onclick="addChoice()">Add Choice</button>
+    <button type="button" style="width:200px" onclick="addChoice()">Add Choice</button>
 
     {!! htmlFormButton('Submit') !!}
 </form>
