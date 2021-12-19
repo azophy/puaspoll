@@ -31,8 +31,8 @@
 
 <!-- example-->
 <section id="example">
-  <h2>Example: where should we go for our next holiday?</h2>
-    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="10" style="width:100%;height:70vh"></iframe>
+  <h2>Example:</h2>
+    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="1" style="width:100%;height:70vh;border-style:dashed"></iframe>
 
 </section><!-- ./ example -->
 

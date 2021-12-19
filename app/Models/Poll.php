@@ -67,4 +67,12 @@ class Poll extends Model
 
         return $sortedChoice;
     }
+
+    static function generateIframeCode($slug)
+    {
+        $route = route('polls.embed', compact('slug'));
+        return <<<CODE
+<iframe src="$route" frameborder="10" style="width:100%;height:70vh"></iframe>
+CODE;
+    }
 }

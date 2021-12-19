@@ -166,7 +166,7 @@ class PollController extends Controller
         $poll = Poll::findBySlugOrFail($slug);
 
         if ($request->ismethod('get')) {
-            return view('poll.input', [
+            return view('poll.input_embed', [
                 'item' => $poll,
             ]);
         }

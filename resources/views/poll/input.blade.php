@@ -18,6 +18,16 @@
     @endif
 
     <div class="sharethis-inline-share-buttons"></div>
+    <details style="max-width:300px">
+        <summary>
+            <u>
+                Embed this poll
+            </u>
+        </summary>
+        <p>
+            <textarea id="" name="" cols="30" rows="2">{!! $item->generateIframeCode($item->slug) !!}</textarea>
+        </p>
+    </details>
 
     <article>
         <h3>Input your vote</h3>
