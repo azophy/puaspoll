@@ -10,6 +10,8 @@ class Poll extends Model
 {
     use HasFactory;
 
+    const VOTE_BUDGET = 100;
+
    /**
      * The attributes that are mass assignable.
      *

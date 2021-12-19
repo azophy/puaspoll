@@ -11,13 +11,14 @@ $choices = $item->choice ?? [
     ['title' => 'Farm'],
     ['title' => 'Museum'],
 ];
+use App\Models\Poll;
 @endphp
 
 <form method="post" action="{{$form_action}}" id="{{getFormId()}}">
     @csrf
     <div class="polling_budget_box">
         <label for="budget">Your Voting Budget (<span id="{{$pollname}}-budget-indicator"></span> point)
-          <progress id="{{$pollname}}-budget" value="100" max="100"></progress>
+          <progress id="{{$pollname}}-budget" value="{{ Poll::VOTE_BUDGET }}" max="{{ Poll::VOTE_BUDGET }}"></progress>
         </label>
 
         <em>How to use: you could spend your "voting budget" for each choices below. However beware that the cost for each vote increase by the power of 2, so spend it wisely!</em>
@@ -60,13 +61,13 @@ function updateBudget(pollname) {
         item.previousElementSibling.innerText = item.value
     })
     console.log(total)
-    var budgetLeft = 100 - total
+    var budgetLeft = {{ Poll::VOTE_BUDGET }} - total
     document.getElementById(pollname + '-budget').value = budgetLeft
     document.getElementById(pollname + '-budget-indicator').innerText = budgetLeft
 
     var notif = document.getElementById(pollname + '-notif')
     var submit = document.getElementById(pollname + '-submit')
-    if (total > 100) {
+    if (total > {{ Poll::VOTE_BUDGET }}) {
         notif.innerHTML = '<mark>You has exceeded your budget! Adjust you choices so they still within range</mark>'
         submit.disabled = true
     } else {

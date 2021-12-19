@@ -112,6 +112,24 @@ class PollController extends Controller
 
          $validated = $request->validate([
             'g-recaptcha-response' => 'recaptcha',
+            // poll-choice could not be empty
+            function ($attribute, $value, $fail) {
+                if (count($value) <= 0) {
+                    $fail('There should at least 1 choice exists.');
+                }
+            },
+            // sum of poll-choice score must be between 0 and VOTE_BUDGET
+            function ($attribute, $value, $fail) {
+                $sumScore = 0;
+
+                foreach ($value as $key => $val) {
+                    $sumScore += $val;
+                }
+
+                if ($sumScore < 0 || $sumScore > Poll::VOTE_BUDGET) {
+                    $fail('Sum of all vote must be between 0 and ' . Poll::VOTE_BUDGET);
+                }
+            },
         ]);
 
         $tempChoice = $poll->choice;

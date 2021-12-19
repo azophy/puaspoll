@@ -25,9 +25,10 @@ class StorePollRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|unique:polls|max:255',
+            'slug' => 'required|unique:polls|max:255|alpha_dash',
             'description' => 'nullable|string',
             'choice_title' => 'required|array',
+            'g-recaptcha-response' => 'recaptcha',
         ];
     }
 }
