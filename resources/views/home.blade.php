@@ -39,8 +39,8 @@
 
 <!-- cta-->
 <section id="cta">
-  <h2>Create you own poll now!</h2>
-  <a href="{{route('polls.create')}}">Create For Free</a>
+  <h2>Create you own poll for free!</h2>
+  <a href="{{route('polls.create')}}" role="button">Create Now</a>
 </section><!-- ./ cta -->
 
 </x-layouts.base>
