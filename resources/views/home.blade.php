@@ -32,9 +32,8 @@
 <!-- example-->
 <section id="example">
   <h2>Example: where should we go for our next holiday?</h2>
-  <p>This is just a hypotethical polling for a family vacation. Play with it below to understand how the polling on this site works.</p>
+    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="10" style="width:100%;height:70vh"></iframe>
 
-  <x-poll.input_form/>
 </section><!-- ./ example -->
 
 <!-- cta-->

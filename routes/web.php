@@ -23,5 +23,7 @@ Route::resource('/polls', PollController::class)->only([
     'index', 'create', 'store',
 ]);
 Route::get('/-/{slug}', [PollController::class, 'show'])->name('polls.show');
+Route::get('/-/{slug}/embed', [PollController::class, 'embed'])->name('polls.embed');
 Route::post('/-/{slug}', [PollController::class, 'input'])->name('polls.input');
+Route::post('/-/{slug}/embed', [PollController::class, 'embed'])->name('polls.input_embed');
 Route::get('/-/{slug}/result', [PollController::class, 'result'])->name('polls.result');

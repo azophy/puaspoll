@@ -155,6 +155,63 @@ class PollController extends Controller
     }
 
     /**
+     * Display & Accept Post Submission
+     *
+     * @param  string   $slug
+     * @param  \App\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function embed($slug, Request $request)
+    {
+        $poll = Poll::findBySlugOrFail($slug);
+
+        if ($request->ismethod('get')) {
+            return view('poll.input', [
+                'item' => $poll,
+            ]);
+        }
+
+        if (session("submission_received_$slug")) {
+            abort('401', 'You has submitted your vote for this poll');
+        }
+
+        $validated = $request->validate([
+            'g-recaptcha-response' => 'recaptcha',
+            'poll-choice' => [
+                // sum of poll-choice score must be between 0 and VOTE_BUDGET
+                function ($attribute, $value, $fail) {
+                    $sumScore = 0;
+
+                    foreach ($value as $key => $val) {
+                        $sumScore += $val;
+                    }
+
+                    if ($sumScore < 0 || $sumScore > Poll::VOTE_BUDGET) {
+                        $fail('Sum of all vote must be between 0 and ' . Poll::VOTE_BUDGET);
+                    }
+                },
+            ],
+        ]);
+
+        $tempChoice = $poll->choice;
+        foreach ($request->input('poll-choice') as $index => $val) {
+            $tempChoice[$index]['score'] += $val;
+            $tempChoice[$index]['num_voter'] += empty($val) ? 0 : 1;
+        }
+
+        $poll->choice = $tempChoice;
+        $poll->num_voter++;
+
+        if ($poll->save()) {
+            $request->session()->flash('status', "Submission received !");
+        }
+
+        session(["submission_received_$slug" => true]);
+
+        return redirect()->route('polls.show', compact('slug'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdatePollRequest  $request
