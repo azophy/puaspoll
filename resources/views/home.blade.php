@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-layouts.main>
 
 <!-- about -->
 <section id="about">
@@ -44,5 +44,5 @@
   <a href="{{route('polls.index')}}" role="button">Explore Public Polls</a>
 </section><!-- ./ cta -->
 
-</x-layouts.base>
+</x-layouts.main>
 

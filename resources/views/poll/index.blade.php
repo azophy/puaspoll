@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-layouts.main>
 
 <h1>PuasPoll's Public Poll List</h1>
 
@@ -30,5 +30,5 @@
 </table>
 
 
-</x-layouts.base>
+</x-layouts.main>
 

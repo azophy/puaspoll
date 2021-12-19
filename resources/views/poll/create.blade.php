@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-layouts.main>
 
 <h1>Create new Poll</h1>
 
@@ -61,5 +61,5 @@ function removeChoice(el) {
     el.parentNode.parentNode.removeChild(el.parentNode);
 }
 </script>
-</x-layouts.base>
+</x-layouts.main>
 

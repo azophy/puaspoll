@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-layouts.main>
 
 @if (session('status'))
     <mark>
@@ -10,5 +10,5 @@
 
 <x-poll.result_chart :poll="$poll"/>
 
-</x-layouts.base>
+</x-layouts.main>
 
