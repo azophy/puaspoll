@@ -15,7 +15,7 @@ $choices = $item->choice ?? [
 
 <form method="post" action="{{$form_action}}" id="{{getFormId()}}">
     @csrf
-    <div style="background:#ddd; padding:1em">
+    <div class="polling_budget_box">
         <label for="budget">Your Voting Budget (<span id="{{$pollname}}-budget-indicator"></span> point)
           <progress id="{{$pollname}}-budget" value="100" max="100"></progress>
         </label>
@@ -39,6 +39,18 @@ $choices = $item->choice ?? [
         'id' => "{$pollname}-submit",
     ]) !!}
 </form>
+
+<style>
+.polling_budget_box {
+    background:#ddd;
+    padding:1em;
+}
+@media (prefers-color-scheme: dark) {
+    .polling_budget_box {
+        background:#333;
+    }
+}
+</style>
 
 <script>
 function updateBudget(pollname) {
