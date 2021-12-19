@@ -29,12 +29,6 @@ class StorePollRequest extends FormRequest
             'description' => 'nullable|string',
             'choice_title' => 'required|array',
             'g-recaptcha-response' => 'recaptcha',
-            // poll-choice could not be empty
-            function ($attribute, $value, $fail) {
-                if (count($value) <= 0) {
-                    $fail('There should at least 1 choice exists.');
-                }
-            },
         ];
     }
 }
