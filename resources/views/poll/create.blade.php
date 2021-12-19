@@ -22,13 +22,13 @@
     </blockquote>
 
     <label for="title">Poll's Title</label>
-    <input type="text" name="title" value="">
+    <input type="text" name="title" value="{{ old('title') }}">
 
-    <label for="title">Description</label>
-    <textarea id="description" name="description" cols="30" rows="5"></textarea>
+    <label for="description">Description</label>
+    <textarea id="description" name="description" cols="30" rows="5">{{ old('description') }}</textarea>
 
     <label for="title">Url</label>
-    {{url('/-')}}/<input type="text" name="slug" value="" placeholder="url-to-your-new-poll">
+    {{url('/-')}}/<input type="text" name="slug" value="" placeholder="url-to-your-new-poll" value="{{ old('slug') }}">
 
     <h3>Choices</h3>
     <ul id="choices">
