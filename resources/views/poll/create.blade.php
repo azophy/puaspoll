@@ -12,7 +12,7 @@
     </div>
 @endif
 
-<form method="post" action="{{route('polls.store')}}">
+<form method="post" action="{{route('polls.store')}}" id="{{getFormId()}}">
     @csrf
 
     <blockquote>
@@ -36,7 +36,7 @@
 
     <button type="button" style="width:200px;background:#444" onclick="addChoice()">Add Choice</button>
 
-    <button type="submit">Submit</button>
+    {!! htmlFormButton('Submit') !!}
 </form>
 
 <script>

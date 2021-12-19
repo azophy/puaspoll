@@ -13,7 +13,7 @@ $choices = $item->choice ?? [
 ];
 @endphp
 
-<form method="post" action="{{$form_action}}">
+<form method="post" action="{{$form_action}}" id="{{getFormId()}}">
     @csrf
     <div style="background:#ddd; padding:1em">
         <label for="budget">Your Voting Budget (<span id="{{$pollname}}-budget-indicator"></span> point)
@@ -32,7 +32,12 @@ $choices = $item->choice ?? [
     </label>
     @endforeach
 
+    {{--
     <button id="{{$pollname}}-submit" type="submit">Submit</button>
+    --}}
+    {!! htmlFormButton('Submit', [
+        'id' => "{$pollname}-submit",
+    ]) !!}
 </form>
 
 <script>

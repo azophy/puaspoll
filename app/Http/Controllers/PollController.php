@@ -110,6 +110,10 @@ class PollController extends Controller
     {
         $poll = Poll::findBySlugOrFail($slug);
 
+         $validated = $request->validate([
+            'g-recaptcha-response' => 'recaptcha',
+        ]);
+
         $tempChoice = $poll->choice;
         foreach ($request->input('poll-choice') as $index => $val) {
             $tempChoice[$index]['score'] += $val;
