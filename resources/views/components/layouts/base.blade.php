@@ -15,7 +15,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{url('/screenshot.png')}}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta name="twitter:card" content="puaspoll_screenshot" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!--  Non-Essential, But Recommended -->
     <meta property="og:description" content="Satisfying polling ppp for every need, based on Quadratic Voting method" />
