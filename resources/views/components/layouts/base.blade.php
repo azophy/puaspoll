@@ -13,7 +13,7 @@
     <!--  Essential META Tags -->
     <meta property="og:title" content="{{ $title ?? 'PuasPoll • The most satisfiying polling app you\'ll ever tried' }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{url('/screenshot.png')}}" />
+    <meta property="og:image" content="{{url('/og-screenshot.jpg')}}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta name="twitter:card" content="summary_large_image" />
 
