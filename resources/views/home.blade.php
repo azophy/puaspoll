@@ -3,8 +3,15 @@
 <!-- about -->
 <section id="about">
   <h2>What is PuasPoll?</h2>
-  <p>This is simply a site where you could create, fill, and share an online poll. This site is inpired by <a target="_blank" href="https://news.ycombinator.com/item?id=29586658">This HackerNews Thread</a>. I created this website as a weekend project, so feel free to use and insult it.</p>
+  <p>This is simply a site where you could create, fill, and share an online poll. The unique part is, instead of using common 'one-person-one-vote' polling, this site is using <u>Quadratic Voting</u> system. </p>
 </section><!-- ./ about -->
+
+<!-- example-->
+<section id="example">
+  <h2>Example Poll</h2>
+    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="1" style="width:100%;height:70vh;border-style:dashed"></iframe>
+
+</section><!-- ./ example -->
 
 <!-- why -->
 <section id="why">
@@ -26,15 +33,18 @@
       </li>
   </ul>
 
-  <blockquote>Trivia: "Puas" is means "satisfying" in Indonesian. "PuasPoll" is also a word play on popular Javanese slank which roughly translated to "Very Satisfying".</blockquote>
 </section><!-- ./ why -->
 
-<!-- example-->
-<section id="example">
-  <h2>Example:</h2>
-    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="1" style="width:100%;height:70vh;border-style:dashed"></iframe>
+<!-- about-->
+<section id="about">
+  <h2>About PuasPoll</h2>
 
-</section><!-- ./ example -->
+  <p>
+      This site is inpired by <a target="_blank" href="https://news.ycombinator.com/item?id=29586658">This HackerNews Thread</a>. I created this website as a weekend project, so feel free to use and insult it.
+  </p>
+
+  <blockquote>Trivia: "Puas" is means "satisfying" in Indonesian. "PuasPoll" is also a word play on popular Javanese slank which roughly translated to "Very Satisfying".</blockquote>
+</section><!-- ./ about -->
 
 <!-- cta-->
 <section id="cta">
