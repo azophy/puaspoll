@@ -34,6 +34,8 @@
     {!! ReCaptcha::htmlScriptTagJsApi() !!}
 
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=61bf84fb9ebb4b00195d65ea&product=inline-share-buttons" async="async"></script>
+
+    <script id="dsq-count-scr" src="//puaspoll.disqus.com/count.js" async></script>
   </head>
 
   <body>
