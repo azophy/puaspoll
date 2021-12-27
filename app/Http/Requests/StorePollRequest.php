@@ -24,7 +24,7 @@ class StorePollRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|alpha_dash',
             'slug' => 'required|unique:polls|max:255|alpha_dash',
             'description' => 'nullable|string',
             'choice_title' => 'required|array',
