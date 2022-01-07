@@ -36,6 +36,8 @@
     <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=61bf84fb9ebb4b00195d65ea&product=inline-share-buttons" async="async"></script>
 
     <script id="dsq-count-scr" src="//puaspoll.disqus.com/count.js" async></script>
+
+    <script async defer data-website-id="9ba710b6-845e-45cd-a28d-5d0a34306db1" src="https://umami.rover.server.adianto.id/umami.js"></script>
   </head>
 
   <body>
