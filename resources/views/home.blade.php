@@ -9,7 +9,7 @@
 <!-- example-->
 <section id="example">
   <h2>Example Poll</h2>
-    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug')])}}" frameborder="1" style="width:100%;height:70vh;border-style:dashed"></iframe>
+    <iframe src="{{route('polls.embed', ['slug'=>config('params.example_poll_slug'), 'untrack' => true])}}" frameborder="1" style="width:100%;height:70vh;border-style:dashed"></iframe>
 
 </section><!-- ./ example -->
 
