@@ -3,7 +3,7 @@
 <h1>Create new Poll</h1>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" style="background:#ff5d5b; padding:1rem;">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -38,6 +38,13 @@
 
     <h3>Choices</h3>
     <ul id="choices">
+    @foreach (old('choice_title') as $choice)
+        <li>
+            <label>Choice's Title</label>
+            <input type="text" name="choice_title[]" value="{{ $choice }}">
+            <button type="button" onclick="removeChoice(this)">delete</button>
+        </li>
+    @endforeach
     </ul>
 
     <button type="button" style="width:200px" onclick="addChoice()">Add Choice</button>
