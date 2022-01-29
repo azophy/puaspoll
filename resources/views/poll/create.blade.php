@@ -45,15 +45,42 @@
     {!! htmlFormButton('Submit') !!}
 </form>
 
+<style>
+#choices li {
+    display: flex;
+    gap: 1rem;
+}
+
+#choices li label {
+    width: 200px;
+    vertical-align: middle;
+}
+
+#choices li button {
+    width: 100px;
+    background: #c42929;
+}
+</style>
+
 <script>
 function addChoice() {
-    document.getElementById('choices').innerHTML += `
-    <li>
-        <label for="title">Choice's Title</label>
-        <input type="text" name="choice_title[]">
-        <button style="width:100px;background:#c42929" type="button" onclick="removeChoice(this)">delete</button>
-    </li>
-    `
+    var wrapper = document.createElement('li')
+    var label = document.createElement('label')
+    label.innerText = "Choice's Title"
+    wrapper.appendChild(label)
+
+    var choice = document.createElement("input");
+    choice.setAttribute('type', 'text');
+    choice.setAttribute('name', 'choice_title[]');
+    wrapper.appendChild(choice)
+
+    var button = document.createElement('button')
+    button.innerText = 'delete';
+    button.setAttribute('type', 'button');
+    button.setAttribute('onclick', 'removeChoice(this)');
+    wrapper.appendChild(button)
+
+    document.getElementById('choices').appendChild(wrapper)
 }
 
 function removeChoice(el) {
